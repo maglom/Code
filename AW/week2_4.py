@@ -1,6 +1,6 @@
-# Coding Challenge 3 - Dictonaries and key-value inputs
+from collections import defaultdict
 
-dic = {}
+dic = defaultdict(list)
 
 while True:
     ls = input("If you want to print the dictonary enter PRINT NOW \nEnter a key-value pair: ")
