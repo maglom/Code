@@ -1,23 +1,21 @@
 from collections import defaultdict
 
-from collections import defaultdict
-
 class MyCounter:
     
-    
-
     def __init__(self, input):
         self.input = input
-        dic = defaultdict(lambda: 'Key not found')
-        for i in input:
-            dic[i] = dic[i] + 1
+
+        self.dic = defaultdict(int)
+        for i in self.input:
+            self.dic[i] += 1    
 
     def get(self, key):
-        print(dic[key])
-
+        if self.dic[key] == 0:
+            return 'Key not found'
+        else:
+            return self.dic[key]
+            
     def __str__(self):
-        print(dic)
+        return 'Here is the count {}'.format(self.dic)
 
-x = MyCounter([1, 2, 1, 3])
 
-x.get(1)

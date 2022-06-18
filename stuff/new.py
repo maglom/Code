@@ -1,37 +1,24 @@
-dic = {}
+from collections import Counter
+class MyCounter:
+    def __init__ (self, string=''):
+        dictionary = {}
+        for i in string:
+            keys = dictionary.keys()
+            if i in keys:
+                dictionary[i] +=1
+            else:
+                dictionary[i] =1
+        self.dictionary= dictionary
+    def get (self,key):
+        return self.dictionary [key]
+my_counter = MyCounter(string =input("Skriv et ord: "))
+print (my_counter.dictionary)
+key = input("Skriv en bokstav: ")
+if key in my_counter.dictionary:
+    print (my_counter.dictionary[key])
+else:
+    print ("Denne bokstaven er ikke der")
 
+x = MyCounter([1, 2, 3, 3])
 
-
-print("If you want to print the dictonary enter Print")
-print("To end program use CTRL C")
-
-
-
-try:
-  while True:
-    user = input("Input 2 words please: ")
-    if user =="Print":
-      print("Program ended by Print command")
-      print(dic)
-      quit()
-
-
-
-    user = user.split()
-
-    if len(user) != 2:
-      print("Only two words are accepted")
-
-
-
-    elif user[0] not in dic:
-      dic[user[0]] = [user[1]]
-
-    else:
-      dic[user[0]] = dic[user[0]] + [user[1]]
-
-
-
-except KeyboardInterrupt:
-  print ("Program ended with CTRL C")
-  print(dic)
+x.get(1)
