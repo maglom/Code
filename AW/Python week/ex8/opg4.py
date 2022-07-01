@@ -1,6 +1,7 @@
 import math
-
-from scipy import stats
+import matplotlib.mlab as mlab
+import matplotlib.pyplot as plt
+import scipy.stats as stats
 
 
 def throw_distance(velocity, angle, init_height=1.8):
@@ -45,10 +46,9 @@ def airtime(velocity_y, init_height, g=9.81):
 def thorkildsen_throw():
 
     thorkildsen_velocity = stats.weibull_max.rvs(2,loc=107,scale=4,size=1)[0]
-
     thorkildsen_angle = stats.norm.rvs(48,7,1)[0]
 
-    return throw_distance(thorkildsen_velocity, thorkildsen_angle)
+    return throw_distance(thorkildsen_velocity, thorkildsen_angle, 2)
 
 
 def pitkamaki_throw():
@@ -57,13 +57,40 @@ def pitkamaki_throw():
 
     pitkamaki_angle = stats.norm.rvs(45.5,4,1)[0]
 
-    return throw_distance(pitkamaki_velocity, pitkamaki_angle)
+    return throw_distance(pitkamaki_velocity, pitkamaki_angle, 2)
 
 def thorkildsen_best_throw(numb_throw=6):
-    thorkildsen_velocity = stats.weibull_max.rvs(2,loc=107,scale=4,size=numb_throw)
+    ls = []
+    for i in range(numb_throw):
+        ls.append(thorkildsen_throw())
+    return ls
 
-    thorkildsen_angle = stats.norm.rvs(48,7,1)
 
-    return max(throw_distance(thorkildsen_velocity, thorkildsen_angle))
+def pitkamaki_best_throw(numb_throw=6):
+    ls = []
+    for i in range(numb_throw):
+        ls.append(pitkamaki_throw())
+    return ls
 
-thorkildsen_best_throw()
+y = thorkildsen_best_throw(10000)
+
+x = pitkamaki_best_throw(10000)
+
+numb_bins = 1000
+
+plt.hist(y, numb_bins, facecolor='blue', alpha=0.5)
+plt.show()
+
+t_win = 0
+p_win = 0
+
+for t, k in zip(y,x):
+    if t > k:
+        t_win += 1
+    else:
+        p_win += 1
+t_win
+p_win
+
+t_win / (t_win+p_win)
+
