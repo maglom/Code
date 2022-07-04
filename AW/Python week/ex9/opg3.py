@@ -1,21 +1,18 @@
 from typing import MutableMapping
 
-
 dic1={1:10, 2:20} 
 dic2={3:30, 4:40} 
 dic3={5:50,6:60}
 
 dic = dic1 | dic2 | dic3
 
-def flatten_dict(d: MutableMapping, parent_key: str = '', sep: str ='') -> MutableMapping:
-    items = []
-    for k, v in d.items():
-        new_key = parent_key + sep + k if parent_key else k
-        if isinstance(v, MutableMapping):
-            items.extend(flatten_dict(v, new_key, sep=sep).items())
-        else:
-            items.append((new_key, v))
-    return dict(items)
+def flatten_dict(dic):
+    output = {}
+    for key, value in dic.items():
+        for subkey, subvalue in value.items():
+            newkey = key + subkey 
+            output[newkey] = subvalue
+    return output
 
 input_dict = { 
 'a':{'d':1, 'e':2}, 
