@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-def title_case(title, minor_words=''):
-    ls = title.split()
-    bs = []
-    minor_words = minor_words.split()
-    for i in ls:
-        if i in minor_words[1:]:
-            bs.append(i.lower())
-        else:
-            bs.append(i.capitalize())
-    return ' '.join(bs)
-
-title_case('THE WIND IN THE WILLOWS', 'The In')
-=======
 import random
 
 repetitions = 100000
@@ -44,4 +30,3 @@ print(f' Not changing choice:')
 print(f' wins = {count_win}')
 print(f' fails = {count_fail}')
 print(f' win% = {round(((count_win/repetitions) * 100), 2)}')
->>>>>>> 6eebfeef3e48450e4e3c1eafc994873f68528cbf
