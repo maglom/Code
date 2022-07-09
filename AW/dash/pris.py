@@ -2,15 +2,17 @@
 # visit http://127.0.0.1:8050/ in your web browser.
 from decimal import ROUND_UP
 from math import ceil
-import requests 
-import json 
+import requests
+import json
 import datetime
 import time
 import plotly.express as px
-from dash import Dash, html, dcc
+from dash import Dash, html, dcc, dependencies
 import plotly.express as px
 import pandas as pd
-
+import dash
+from dash import dcc
+from dash import html
 def get_price(antall,coin=11): 
     tidls = []
     verdils = []
@@ -18,46 +20,35 @@ def get_price(antall,coin=11):
     for i in range(antall):
         url = f'''https://api2.binance.com/api/v3/ticker/24hr'''
         response = requests.get(url) 
-       
         # test if the respons was ok 
-        assert response.status_code==200  
-       
+        assert response.status_code==200
         dic = (json.dumps(response.json()))
         x = json.loads(dic)
-        
         tid = datetime.datetime.now()
         tiden = tid.strftime('%H:%M:%S') 
-        
         tidls.append(tiden)
         verdils.append(float(x[coin]['lastPrice']))
         print(tidls[-1], verdils[-1])
         time.sleep(1)
     kurs['tid'] = tidls
     kurs['verdi'] = verdils
-
     return(kurs, x[coin]['symbol'])
+
+dic = get_price(10,11)
 
 app = Dash(__name__)
 
-# assume you have a "long-form" data frame
-# see https://plotly.com/python/px-arguments/ for more options
+header = html.H1(f'{dic[1]} Kurs')
 
-dic = get_price(100,11)
-data = dic[0]
-fig = px.line(data, x="tid", y="verdi")
-
-app.layout = html.Div(children=[
-    html.H1(children=f'{dic[1]} Kurs'),
-
-    html.Div(children=f'''
+info = html.Div(f'''
         Her kan du se kursutviklingen i {dic[1]} den siste tiden!
-    '''),
+    ''')
 
-    dcc.Graph(
-        id='Kurs',
-        figure=fig
-    )
-])
+data = dic[0]
+fig = px.line(data, x='tid', y='verdi')
 
+graph = dcc.Graph(id='kurs', figure=fig)
+
+app.layout = html.Div([header, info, graph])
 if __name__ == '__main__':
     app.run_server(debug=False)
