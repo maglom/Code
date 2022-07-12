@@ -1,18 +1,17 @@
 import random
 
-
-with open('stuff\words.txt') as f:
+with open('stuff/words.txt') as f:
     correct_word = random.choice(f.readlines())
-print(correct_word)
 
-right_guesses = ['_' for x in range(len(correct_word))]
+right_guesses = ['_' for x in range(len(correct_word)-1)]
 wrong_guesses = []
 
-print(f'Welcome to Hangman. The word you are looking for has {len(correct_word)} characters.')
+print(f'''
+Welcome to Hangman. The word you are looking for has {len(correct_word)} characters.''')
 
 def get_char():
     while True:
-        guess = input('Input your guess, 1 char: ')
+        guess = input('\nInput your guess, 1 char: ')
         if len(guess) == 1:
             return guess
 
@@ -112,12 +111,23 @@ def print_wrong(n):
         
         ''')
 
+def insert_correct_choice(char):
+    idx = []
+    for c,letter in enumerate(correct_word):
+        if letter == char:
+            idx.append(c)
+    for i in idx:
+        right_guesses[i] = char
+    
+
 while True:
     char = get_char() 
     if char in correct_word:
-        right_guesses[correct_word.index(char)] = char
-        print('Correct! ')
-        if right_guesses == correct_word:
+        insert_correct_choice(char)
+        print('''
+        Correct!
+         ''')
+        if ''.join(right_guesses) == correct_word[:-1]:
             print('You won the game!')
             break
         print(right_guesses)
@@ -127,9 +137,12 @@ while True:
         print_wrong(len(wrong_guesses))
         if len(wrong_guesses) == 5:
             print('You lost the game')
+            print(f'The word was {correct_word}')
             break
-        print(f'Right guesses: {right_guesses}')
-        print(f'Wrong guesses: {wrong_guesses}')
+        print(f'''Right guesses: {right_guesses}
+        ''')
+        print(f'''Wrong guesses: {wrong_guesses}
+        ''')
 
 
         
