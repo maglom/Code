@@ -1,7 +1,12 @@
 import random
 
-with open('stuff/words.txt') as f:
-    correct_word = random.choice(f.readlines())
+try:
+    with open('stuff/words.txt') as f:
+        correct_word = random.choice(f.readlines())
+except:
+    with open('words.txt') as f:
+        correct_word = random.choice(f.readlines())
+
 
 right_guesses = ['_' for x in range(len(correct_word)-1)]
 wrong_guesses = []
@@ -132,10 +137,13 @@ while True:
             break
         print(right_guesses)
     else:
-        print('Wrong guess!')
-        wrong_guesses.append(char)
-        print_wrong(len(wrong_guesses))
-        if len(wrong_guesses) == 5:
+        if char in wrong_guesses:
+            print('You have already made this guess!')
+        else:
+            print('Wrong guess!')
+            wrong_guesses.append(char)
+            print_wrong(len(wrong_guesses))
+        if len(wrong_guesses) == 7:
             print('You lost the game')
             print(f'The word was {correct_word}')
             break
