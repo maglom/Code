@@ -34,7 +34,6 @@ crypt
 curacao
 cycle
 daiquiri
-dirndl
 disavow
 dizzying
 duplex

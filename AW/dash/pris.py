@@ -1,31 +1,32 @@
 # Run this app with `python app.py` and
 # visit http://127.0.0.1:8050/ in your web browser.
+import datetime
+import json
+import time
 from decimal import ROUND_UP
 from math import ceil
-import requests
-import json
-import datetime
-import time
-import plotly.express as px
-from dash import Dash, html, dcc, dependencies
-import plotly.express as px
+
 import pandas as pd
+import plotly.express as px
+import requests
+
 import dash
-from dash import dcc
-from dash import html
-def get_price(antall,coin=11): 
+from dash import Dash, dcc, dependencies, html
+
+
+def get_price(antall, coin=11):
     tidls = []
     verdils = []
     kurs = {}
     for i in range(antall):
-        url = f'''https://api2.binance.com/api/v3/ticker/24hr'''
-        response = requests.get(url) 
-        # test if the respons was ok 
-        assert response.status_code==200
-        dic = (json.dumps(response.json()))
-        x = json.loads(dic)
+        url = r'''https://api2.binance.com/api/v3/ticker/24hr'''
+        response = requests.get(url)
+        # test if the respons was ok
+        assert response.status_code == 200
+        dic_ = (json.dumps(response.json()))
+        x = json.loads(dic_)
         tid = datetime.datetime.now()
-        tiden = tid.strftime('%H:%M:%S') 
+        tiden = tid.strftime('%H:%M:%S')
         tidls.append(tiden)
         verdils.append(float(x[coin]['lastPrice']))
         print(tidls[-1], verdils[-1])
@@ -34,7 +35,8 @@ def get_price(antall,coin=11):
     kurs['verdi'] = verdils
     return(kurs, x[coin]['symbol'])
 
-dic = get_price(10,11)
+
+dic = get_price(10, 11)
 
 app = Dash(__name__)
 

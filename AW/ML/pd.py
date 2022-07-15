@@ -1,3 +1,4 @@
+from testitest import *
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
@@ -12,7 +13,7 @@ from sklearn.model_selection import train_test_split
 
 try:
     df = pd.read_csv('kc_house_data.csv')
-    
+
 except:
     df = pd.read_csv('AW/ML/kc_house_data.csv')
 
@@ -33,6 +34,3 @@ model.score(X=x_multi_colum, y=price)
 price_pred = model.predict(np.c_[input])
 
 mean_absolute_error(price_pred, price)
-
-
-
