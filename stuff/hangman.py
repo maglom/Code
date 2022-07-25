@@ -139,7 +139,7 @@ def game(correct_word, right_guesses, wrong_guesses, get_char, print_wrong, inse
             if ''.join(right_guesses) == correct_word[:-1]:
                 print('You won the game!')
                 break
-            print(right_guesses)
+            print(f'Right guesses: {right_guesses}\n \nWrong guesses: {wrong_guesses}')
         else:
             if char in wrong_guesses:
                 print('You have already made this guess!')
