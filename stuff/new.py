@@ -1,6 +1,7 @@
 def generate_hashtag(s):
     if not s:
         return False
+<<<<<<< HEAD
     bs = []
     ls = s.split(' ')
     for c,i in enumerate(ls):
@@ -13,3 +14,15 @@ def generate_hashtag(s):
     return ''.join(bs)
 
 generate_hashtag('CodeWars is nice')
+=======
+    ls = s.split(' ')
+    for c,i in enumerate(ls):
+        ls[c] = list(i)
+        ls[c][0] = ls[c][0].upper()
+    for c,i in enumerate(ls):
+        ls[c] = ''.join(i)
+    ls.insert(0,'#')
+    return ''.join(ls)
+
+generate_hashtag('codewars is nice')
+>>>>>>> 7f697ec4332dbfd30665455ce8aaf6b77e6f50dc
