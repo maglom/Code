@@ -1,0 +1,13 @@
+{
+    "Taco": {
+        "Cheese": 5,
+        "Meat": 10,
+        "Onion": 0
+    },
+    "Cake": {
+        "Flour": 50,
+        "Butter": 10,
+        "Egg": 5
+    },
+    "Instructions": "For Cake you will need:\n12 ml/pieces/dl/gram of Egg\n5 ml/pieces/dl/gram of Milk\n100 ml/pieces/dl/gram of Flour\n\nDu m\u00e5 knuse egga\ngunne ovnen \nr\u00f8re melet\nDu m\u00e5 knuse egga\ngunne ovnen \nr\u00f8re melet\nDu m\u00e5 knuse egga\ngunne ovnen \nr\u00f8re melet\nDu m\u00e5 knuse egga\ngunne ovnen \nr\u00f8re melet\nDu m\u00e5 knuse egga\ngunne ovnen \nr\u00f8re melet\nknuse koed\nbanke bif\nsalte pepre\nDu m\u00e5 knuse egga\ngunne ovnen \nr\u00f8re melet\nDu m\u00e5 knuse egga\ngunne ovnen \nr\u00f8re melet"
+}
