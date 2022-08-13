@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+from flask import Flask, request, jsonify
+import requests
+
+response = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+response = response.text
+
+
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    #return response
+    if request.args:
+        return 'HALLA'   
+    return 'BALLA'
+
+app.run(debug=True)
+=======
 from flask import Flask,jsonify
 import db1
 import requests
@@ -25,3 +45,4 @@ def get_oscar(num_oscar):
 app.run(debug=True)
 
 
+>>>>>>> 6c0dbf3035c433bf69076122c38f8e34b9a694b9

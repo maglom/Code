@@ -1,11 +1,8 @@
-import random
+import requests
 
-try:
-    with open('stuff/words.txt') as f:
-        correct_word = random.choice(f.readlines())
-except:
-    with open('words.txt') as f:
-        correct_word = random.choice(f.readlines())
+URL = 'https://random-word-api.herokuapp.com/word'
+response = requests.get(URL)
+correct_word = response.text
 
 
 right_guesses = ['_' for x in range(len(correct_word)-1)]
@@ -51,7 +48,7 @@ def print_wrong(n):
         |                |
         |                O
         |                |
-        |               /|
+        |                |
         |                
         |               
        / \
@@ -64,17 +61,20 @@ def print_wrong(n):
     if n == 3:
         print(r''' 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> windows
         
+>>>>>>> 6c0dbf3035c433bf69076122c38f8e34b9a694b9
             _________________
             |                |
             |                |
             |                |
             |                O
             |                |
-            |               /|\
+            |               /|
             |                
             |               
         / \
@@ -84,8 +84,14 @@ def print_wrong(n):
             
             ''')
 <<<<<<< HEAD
+
+    if n == 4:
+        print(r'''    
+=======
+<<<<<<< HEAD
 =======
        
+>>>>>>> 6c0dbf3035c433bf69076122c38f8e34b9a694b9
         _________________
         |                |
         |                |
@@ -101,11 +107,14 @@ def print_wrong(n):
     /       \
         
         ''')
+<<<<<<< HEAD
+=======
 >>>>>>> 7f697ec4332dbfd30665455ce8aaf6b77e6f50dc
 =======
 >>>>>>> windows
+>>>>>>> 6c0dbf3035c433bf69076122c38f8e34b9a694b9
 
-    if n == 4:
+    if n == 5:
         print(r''' 
        
         _________________
@@ -124,7 +133,7 @@ def print_wrong(n):
         
         ''')
 
-    if n == 5:
+    if n == 6:
         print(r''' 
        
         _________________
@@ -164,7 +173,8 @@ def game(correct_word, right_guesses, wrong_guesses, get_char, print_wrong, inse
             if ''.join(right_guesses) == correct_word[:-1]:
                 print('You won the game!')
                 break
-            print(f'Right guesses: {right_guesses}\n \nWrong guesses: {wrong_guesses}')
+            print(
+                f'Right guesses: {right_guesses}\n \nWrong guesses: {wrong_guesses}')
         else:
             if char in wrong_guesses:
                 print('You have already made this guess!')
