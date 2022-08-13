@@ -64,6 +64,9 @@ def print_wrong(n):
     if n == 3:
         print(r''' 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> windows
         
             _________________
             |                |
@@ -80,6 +83,7 @@ def print_wrong(n):
         /       \
             
             ''')
+<<<<<<< HEAD
 =======
        
         _________________
@@ -98,6 +102,8 @@ def print_wrong(n):
         
         ''')
 >>>>>>> 7f697ec4332dbfd30665455ce8aaf6b77e6f50dc
+=======
+>>>>>>> windows
 
     if n == 4:
         print(r''' 
